@@ -17,6 +17,7 @@ export default function ImagePicker({ label, name }) {
   function handleImageChange(event) {
     const file = event.target.files[0]; // files: 선택됐던 모든 파일들의 배열
     if (!file) {
+      setPickedImage(null);
       return;
     }
 
@@ -53,6 +54,7 @@ export default function ImagePicker({ label, name }) {
           name={name}
           ref={imageInput}
           onChange={handleImageChange}
+          required
         />
         <button
           className={classes.button}
