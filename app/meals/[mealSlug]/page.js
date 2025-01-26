@@ -2,11 +2,17 @@ import Image from "next/image";
 
 import classes from "./page.module.css";
 import { getMeal } from "@/lib/meals";
+import { notFound } from "next/navigation";
 
 export default function MealDetailsPage({ params }) {
   const meal = getMeal(params.mealSlug);
 
-  // meal.instructions = meal.instructions.replace(/\n/g, "<br>");
+  if (!meal) {
+    // notFound() : 컴포넌트 실행을 멈추고, 이 페이지에서 가장 가까운 not-found나 오류 페이지 출력
+    notFound();
+  }
+
+  meal.instructions = meal.instructions.replace(/\n/g, "<br>");
 
   return (
     <>
